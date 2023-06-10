@@ -253,7 +253,7 @@ public class BST <K extends Comparable<K>, T> implements BST_interfaz<K,T>{
 
     @Override
     public Linked_list inOrder() {
-        Linked_list<K> listaInOrder = new Linked_list<K>();
+        Linked_list<T> listaInOrder = new Linked_list<T>();
 
 		if (root == null)
             return null;
@@ -263,11 +263,11 @@ public class BST <K extends Comparable<K>, T> implements BST_interfaz<K,T>{
         }
     }
 
-    private void inOrderRecursivo(Nodo_arbol<K,T> nodo, Linked_list<K> listaInOrder) {
+    private void inOrderRecursivo(Nodo_arbol<K,T> nodo, Linked_list<T> listaInOrder) {
         if (nodo.getLeft() != null) {
             inOrderRecursivo(nodo.getLeft(), listaInOrder);
         }
-        listaInOrder.add(nodo.getKey());
+        listaInOrder.add(nodo.getValue());
         if (nodo.getRight() != null) {
             inOrderRecursivo(nodo.getRight(), listaInOrder);
         }
@@ -275,7 +275,7 @@ public class BST <K extends Comparable<K>, T> implements BST_interfaz<K,T>{
 
     @Override
     public Linked_list preOrder() {
-        Linked_list<K> listaInOrder = new Linked_list<K>();
+        Linked_list<T> listaInOrder = new Linked_list<T>();
 
 		if (root == null)
             return null;
@@ -285,8 +285,8 @@ public class BST <K extends Comparable<K>, T> implements BST_interfaz<K,T>{
         }
     }
 
-    private void preOrderRecursivo(Nodo_arbol<K,T> nodo, Linked_list<K> listaInOrder) {
-        listaInOrder.add(nodo.getKey());
+    private void preOrderRecursivo(Nodo_arbol<K,T> nodo, Linked_list<T> listaInOrder) {
+        listaInOrder.add(nodo.getValue());
         if (nodo.getLeft() != null) {
             preOrderRecursivo(nodo.getLeft(), listaInOrder);
         }
