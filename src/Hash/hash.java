@@ -2,6 +2,8 @@ package Hash;
 import java.util.Arrays;
 import linked_list.Linked_list;
 
+import static java.lang.Math.abs;
+
 public class hash<K,V> implements hash_interface<K,V> {
     V[] elems = null;
     
@@ -13,7 +15,7 @@ public class hash<K,V> implements hash_interface<K,V> {
     public int hashVal(K key){
         //crear una funcion hash para insertar en el arreglo varios valores
         int hash = 0;
-        hash = key.hashCode();
+        hash = abs(key.hashCode());
         hash = hash % elems.length;
         return hash;
         

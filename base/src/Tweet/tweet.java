@@ -22,7 +22,7 @@ public class tweet implements tweet_interface{
         String[] fecha_separada = fecha.split("-");
         this.año = Integer.parseInt(fecha_separada[0]);
         this.mes = Integer.parseInt(fecha_separada[1]);
-        this.dia = Integer.parseInt(fecha_separada[2]);
+        this.dia = Integer.parseInt(fecha_separada[2].substring(0,2));
         //user.sumarTweet();
     }
 

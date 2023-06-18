@@ -1,5 +1,7 @@
 package Heap;
 
+import linked_list.Linked_list;
+
 public class heap<T extends Comparable<T>> implements heap_interfaz<T>{
     private static final int cap = 2;
 
@@ -94,6 +96,7 @@ public class heap<T extends Comparable<T>> implements heap_interfaz<T>{
 	}*/
 
 
+
 	public void insert(T x) {
 		if (size == heap.length - 1)
 			reajustar();
@@ -123,7 +126,14 @@ public class heap<T extends Comparable<T>> implements heap_interfaz<T>{
 		return size;
 	}
 
+	@Override
+	public Linked_list<T> toList() {
+		Linked_list<T> list = new Linked_list<T>();
+		for (int i = 1; i <= size; i++) {
+			list.add(heap[i]);
+		}
+		return list;
+	}
 
 
-	
 }

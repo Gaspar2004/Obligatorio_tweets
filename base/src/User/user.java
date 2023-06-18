@@ -15,8 +15,8 @@ public class user implements user_interface, Comparable<user> {
     private Linked_list <tweet> tweets =null;
 
 
-    public user(String name, String username, int favourites_count,boolean verified) {
-        this.name = name;
+    public user( String username, int favourites_count,boolean verified) {
+       // this.name = name;
         this.username = username;
         this.favourites_count = favourites_count;
         this.verified=verified;
@@ -28,7 +28,7 @@ public class user implements user_interface, Comparable<user> {
 
     @Override
     public String getName() {
-        return name;
+        return username;
     }
 
 

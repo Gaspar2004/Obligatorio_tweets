@@ -20,6 +20,7 @@ import org.apache.commons.csv.CSVRecord;
 public class Main2 {
 
     public static void main(String[] args)  {
+        long startTime = System.currentTimeMillis();
         cargarDatosApache();
        // cargarDatosApache();
         user [] usuariosConMasTweetsList = new user[0];
@@ -31,43 +32,10 @@ public class Main2 {
         hash users = new hash(10);
         heap<user> heapUsers = new heap<user>();
 
-        user user2 = new user("name2","username2",1,true);
-        tweet tweet2 = new tweet(2,"sadasdsadasd","2023-06-10");
-        user2.addTweet(tweet2);
-        users.put("username2",user2);
 
 
 
-        user user3 = new user("name3","username3",5,true);
-        tweet tweet3 = new tweet(3,"32AaaSpiloto1","2023-06-05");
-        user3.addTweet(tweet3);
-        tweet tweet5 = new tweet(5,"teFDFDFDDFxt5","2023-06-10");
-        user3.addTweet(tweet5);
-        tweet tweet6 = new tweet(6,"teFDFDFDDFxt6 piloto1","2023-06-10");
-        user3.addTweet(tweet6);
-        users.put("username3",user3);
-
-        user user4 = new user("name4","username4",18,true);
-        tweet tweet4 = new tweet(4,"XDXDXD<xt4piloto2","2023-06-10");
-        user4.addTweet(tweet4);
-        tweet tweet7 = new tweet(7,"teFDFDFDDFxd7piloto2","2023-06-10");
-        user4.addTweet(tweet7);
-        users.put("username4",user4);
-
-        user user5 = new user("name5","username5",15,true);
-        tweet tweet8 = new tweet(8,"teFDFDFDDFxd8piloto2","2023-06-10");
-        user5.addTweet(tweet8);
-        users.put("username5",user5);
-
-        heapUsers.insert(user2);
-        heapUsers.insert(user3);
-        heapUsers.insert(user4);
-        heapUsers.insert(user5);
-
-
-
-
-        if(!hashtagsBST.contains("hashtag1")) {
+       /* if(!hashtagsBST.contains("hashtag1")) {
             hashtag hashtag1 = new hashtag("hashtag1");
             hashtagsBST.add("hashtag1", hashtag1);
             hashtag1.setTweets(tweet2);
@@ -88,10 +56,10 @@ public class Main2 {
             hashtagsBST.add("hashtag1", hashtag3);
             hashtag3.setTweets(tweet5);
         }else
-            hashtagsBST.find("hashtag1").setTweets(tweet5);
+            hashtagsBST.find("hashtag1").setTweets(tweet5);*/
 
 
-        Linked_list<hashtag> valuesHashtags = hashtagsBST.inOrder();
+      /*  Linked_list<hashtag> valuesHashtags = hashtagsBST.inOrder();
         imprimirCantHashDistintos(valuesHashtags,"2023-06-10");
 
         hashMasUsadoParaUnDia(valuesHashtags,"2023-06-05");
@@ -111,9 +79,9 @@ public class Main2 {
 
         //cargardatos();
         String pilotosABuscar[] = {"piloto1","piloto2","piloto3"};
-        long startTime = System.currentTimeMillis();
 
-        System.out.println(pilotosMasMencionadosPorMes(valuesUsers,"2023-06-10",pilotosABuscar)[0]);
+
+        System.out.println(pilotosMasMencionadosPorMes(valuesUsers,"2023-06-10",pilotosABuscar)[0]);*/
 
         long endTime = System.currentTimeMillis() - startTime;
         System.out.println("Tiempo de ejecucion: " + endTime + "ms");
@@ -131,10 +99,11 @@ public class Main2 {
     public static String[] pilotosMasMencionadosPorMes(Linked_list<user> valuesUsers,String fecha,String [] pilotos){
 
         String[] top10pilotos = new String[10];
-        for (int i = 0; i < pilotos.length; i++) {
-            int cant = pilotosCantMencionadosPorMes(valuesUsers,fecha,pilotos[i]);
-            if(cant>0){
-                for (int j = 0; j < top10pilotos.length; j++) {
+
+        for (int j = 0; j < top10pilotos.length; j++) {
+            for (int i = 0; i < pilotos.length; i++) {
+                int cant = pilotosCantMencionadosPorMes(valuesUsers,fecha,pilotos[i]);
+                if(cant>0){
                     if(top10pilotos[j] == null){
                         top10pilotos[j] = pilotos[i];
                         break;
@@ -162,7 +131,7 @@ public class Main2 {
                 int añoTweet = user.getTweets().get(j).getFecha()[0];
                 if(mesTweet == mes && añoTweet == año){
                     if(user.getTweets().get(j).getText().toLowerCase().contains(piloto.toLowerCase())) {
-                        System.out.println(user.getName() + " menciono a " + piloto + " en " + user.getTweets().get(j).getText());
+                      //  System.out.println(user.getName() + " menciono a " + piloto + " en " + user.getTweets().get(j).getText());
                         cant++;
                     }
                 }
@@ -194,8 +163,8 @@ public class Main2 {
                 tweet tweet = (tweet) hashtag.getTweets().get(j);
                 if(tweet.getFecha()[0]==año&&tweet.getFecha()[1]==mes&&tweet.getFecha()[2]==dia && hashtag.getText()!="f1") {
                     cantHash++;
-                    System.out.println(hashtag.getText()+" esta en el dia:");
-                    System.out.println("Año: "+año+" Mes: "+mes+" Dia: "+dia);
+                  //  System.out.println(hashtag.getText()+" esta en el dia:");
+                  //  System.out.println("Año: "+año+" Mes: "+mes+" Dia: "+dia);
                 }
             }
             if(cantHash>cantHashMasUsado){
@@ -236,7 +205,7 @@ public class Main2 {
                 usuariosConMasTweetsList[usuariosConMasTweetsList.length - 1] = (user) listausuarios.get(i);
             }else{
                 int min = 0;
-                while(usuariosConMasTweetsList[min]!=null && usuariosConMasTweetsList[min].getCantTweets() > user.getCantTweets()){
+                while(min<usuariosConMasTweetsList.length && usuariosConMasTweetsList[min]!=null && usuariosConMasTweetsList[min].getCantTweets() > user.getCantTweets()){
                     min++;
                 }
 
@@ -271,7 +240,7 @@ public class Main2 {
                 usuariosConMasFavsList[usuariosConMasFavsList.length - 1] = (user) listausuarios.get(i);
             }else{
                 int min = 0;
-                while(usuariosConMasFavsList[min]!=null && usuariosConMasFavsList[min].getFavorites() > user.getFavorites()){
+                while(min<usuariosConMasFavsList.length && usuariosConMasFavsList[min]!=null && usuariosConMasFavsList[min].getFavorites() > user.getFavorites()){
                     min++;
                 }
 
@@ -282,7 +251,7 @@ public class Main2 {
                     }
                     usuariosConMasFavsList[min] = user;
                 }
-                else if(usuariosConMasFavsList[min]!=null && user.getFavorites() < usuariosConMasFavsList[min].getFavorites()){
+                else if(min<usuariosConMasFavsList.length && usuariosConMasFavsList[min]!=null && user.getFavorites() < usuariosConMasFavsList[min].getFavorites()){
                     for(int j = min; j<usuariosConMasFavsList.length;j++){
                         if(usuariosConMasFavsList[j+1]!=null)
                             usuariosConMasFavsList[j+1]=usuariosConMasFavsList[j];
@@ -388,7 +357,9 @@ public class Main2 {
 
 
     public static void cargarDatosApache(){
-
+        heap<user> heapUsers = new heap<user>();
+        hash<String,user> users = new hash<String,user>(65000);
+        BST<String,hashtag> hashtagsBST = new BST<String,hashtag>();
         String SAMPLE_CSV_FILE_PATH = "C:\\f1_dataset_test.csv";
 
         try (
@@ -405,24 +376,133 @@ public class Main2 {
                 String user_name = csvRecord.get(i);i++;
                 System.out.println(idTweet + " - " + user_name);//i++;
                 String user_location = csvRecord.get(i);i++;
+                System.out.println("Loc " + user_location);
                 String user_description = csvRecord.get(i);i++;
-                String user_created = csvRecord.get(i);i++;
+                System.out.println("Desc " + user_description);
+                String user_created = "";
+                int iaux = 0;
+                while (true && iaux < 10) {
+                    try {
+                        user_created = csvRecord.get(i);
+                        String [] aux = user_created.split("-");
+                        if (aux.length >= 3) {
+                            System.out.println("Creado " + user_created);
+                            i++;
+                            break;
+                        }
+                    } catch (Exception e) {
+                        i++;
+                    }
+                    iaux++;
+                }
+                if(iaux>12)continue;
+
                 //int user_followers = Integer.parseInt(csvRecord.get(5));
-                i++;
+                //i++;
+
                 int user_friends = (int) Double.parseDouble(csvRecord.get(i));i++;
-                int user_favourites = (int) Double.parseDouble(csvRecord.get(i));i++;
-                boolean user_verified = Boolean.parseBoolean(csvRecord.get(i));i++;
-                String date = csvRecord.get(i);i++;
+                int user_favourites;
+                iaux=0;
+                while (true){
+                    try{
+                        user_favourites = (int) Double.parseDouble(csvRecord.get(i));
+                        i++;
+                        break;
+                    } catch (Exception e){
+                        i++;
+                    }
+                    iaux++;
+                }
+                i++;
+                String user_verifieds = csvRecord.get(i);
+                iaux=0;
+                while (!(user_verifieds.toLowerCase().equals("true") || user_verifieds.toLowerCase().equals("false"))) {
+                    i++;
+                    user_verifieds = csvRecord.get(i);
+                    iaux++;
+                    if(iaux>12)break;
+                }
+                if(iaux>12)continue;
+                i++;
+                boolean user_verified = Boolean.parseBoolean(user_verifieds);//i++;
+                System.out.println("Verificado " + user_verifieds);
+                String date = csvRecord.get(i);
+                System.out.println("Fecha " + date);
+                iaux = 0;
+                while (true && iaux<13) {
+                    try {
+                        String [] aux = date.split("-");
+                        if (aux.length >= 3) {
+                            System.out.println("Creado T " + date);
+                            i++;
+                            break;
+                        }
+                        date = csvRecord.get(i);
+
+                    } catch (Exception e) {
+                        i++;
+                    }
+                    iaux++;
+                }
+                if(iaux>12)continue;
+                //String date = csvRecord.get(i);i++;
                 String text = csvRecord.get(i);i++;
                 String hashtags = csvRecord.get(i);i++;
+                hashtags = hashtags.replace("[", "").replace("]", "").replace("\"", "").replace(" ","").trim();
+                String [] hashtagsArray = hashtags.split(",");
+                System.out.println("Hashtags " + hashtags);
                 String source = csvRecord.get(i);i++;
                 boolean is_retweet = Boolean.parseBoolean(csvRecord.get(i));
 
+                user user = users.get(user_name);
+                if(user == null){
+                    user = new user(user_name,user_favourites,user_verified);
+                    users.put(user_name,user);
+                    heapUsers.insert(user);
+                }
 
+                tweet tweet = new tweet(idTweet,text,date);
+                user.addTweet(tweet);
+                for(int j=0;j<hashtagsArray.length;j++){
+                    String hashtagS = hashtagsArray[j].replace("'","");
+                    if(hashtagS.equals("F1"))continue;
+                    if(!hashtagsBST.contains(hashtagS)) {
+                        hashtag hashtag = new hashtag(hashtagS);
+                        hashtagsBST.add(hashtagS, hashtag);
+                        hashtag.setTweets(tweet);
+                    }else
+                        hashtagsBST.find(hashtagS).setTweets(tweet);
+                }
 
                 System.out.println("Record No - " + csvRecord.getRecordNumber());
 
             }
+
+            Linked_list valuesUsers = users.values();
+
+            cantTweetEspecifico(valuesUsers,"Abu Dhabi GP main grandstand");
+
+            String pilotosABuscar[] = {"Max Verstappen","Sergio Pérez","Charles Leclerc"};
+            System.out.println("Pilotos mas mencionados: ");
+            System.out.println(pilotosMasMencionadosPorMes(valuesUsers,"2021-10-29",pilotosABuscar)[0]);
+
+            Linked_list<hashtag> valuesHashtags = hashtagsBST.inOrder();
+            imprimirCantHashDistintos(valuesHashtags,"2010-11-10");
+
+            hashMasUsadoParaUnDia(valuesHashtags,"2022-07-04");
+
+            Linked_list<user> top15 = heapUsers.toList();
+           // user[] top15 = Top15usuariosConMasTweets(valuesUsers);
+            System.out.println("Usuario con mas tweets1: " + top15.get(0).getName());
+            System.out.println("Usuario con mas tweets2: " + top15.get(1).getName());
+            System.out.println("Usuario con mas tweets3: " + top15.get(2).getName());
+
+            user[] top7 = Top7usuariosConMasFavs(valuesUsers);
+            System.out.println("Usuario con mas favs1: " + top7[0].getName());
+            System.out.println("Usuario con mas favs2: " + top7[1].getName());
+            System.out.println("Usuario con mas favs3: " + top7[2].getName());
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
