@@ -19,7 +19,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 public class funciones {
-    public static heap<user> heapUsers = new heap<user>();
+   +    public static heap<user> heapUsers = new heap<user>();
 
     public static Linked_list<user> getHeapUsers() {
         return heapUsers.toList();
@@ -90,7 +90,7 @@ public class funciones {
                 int añoTweet = user.getTweets().get(j).getFecha()[0];
                 if(mesTweet == mes && añoTweet == anio){
                     if(user.getTweets().get(j).getText().toLowerCase().contains(piloto.toLowerCase())) {
-                      //  System.out.println(user.getName() + " menciono a " + piloto + " en " + user.getTweets().get(j).getText());
+                        //  System.out.println(user.getName() + " menciono a " + piloto + " en " + user.getTweets().get(j).getText());
                         cant++;
                     }
                 }
@@ -126,8 +126,8 @@ public class funciones {
                 tweet tweet = (tweet) hashtag.getTweets().get(j);
                 if(tweet.getFecha()[0]==año&&tweet.getFecha()[1]==mes&&tweet.getFecha()[2]==dia && hashtag.getText()!="f1") {
                     cantHash++;
-                  //  System.out.println(hashtag.getText()+" esta en el dia:");
-                  //  System.out.println("Año: "+año+" Mes: "+mes+" Dia: "+dia);
+                    //  System.out.println(hashtag.getText()+" esta en el dia:");
+                    //  System.out.println("Año: "+año+" Mes: "+mes+" Dia: "+dia);
                 }
             }
             if(cantHash>cantHashMasUsado){
@@ -152,9 +152,7 @@ public class funciones {
                 if(tweet.getFecha()[0]==año&&tweet.getFecha()[1]==mes&&tweet.getFecha()[2]==dia&&!estaEnElDía) {
                     estaEnElDía = true;
                     canthashdisintos++;
-                   // System.out.println(hashtag.getText()+" esta en el dia:");
-                   // System.out.println(tweet.getText());
-                    //break;
+
                 }
             }
         }
@@ -243,7 +241,7 @@ public class funciones {
             int i = 0;
             while((line=br.readLine())!=null)
             {
-               // pilotosAbuscar
+                // pilotosAbuscar
                 pilotosAbuscar2[i] = line;
                 sb.append(line);      //appends line to string buffer
                 sb.append("\n");     //line feed
@@ -265,12 +263,10 @@ public class funciones {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
-               // csvParser=csvParser.withFirstRecordAsHeader();
+                // csvParser=csvParser.withFirstRecordAsHeader();
         ) {
             for (CSVRecord csvRecord : csvParser) {
-                // Accessing Values by Column Index
-                //idTweet,user_name,user_location,user_description,user_created,user_followers,user_friends,user_favourites,user_verified,date,text,hashtags,source,is_retweet
-               // if(csvRecord.getRecordNumber()==0)continue;
+
                 int i=0;
                 int idTweet=Integer.parseInt(csvRecord.get(i));i++;
                 String user_name = csvRecord.get(i);i++;
@@ -378,27 +374,27 @@ public class funciones {
 
             }
 
-          //  Linked_list valuesUsers = users.values();
+            //  Linked_list valuesUsers = users.values();
 
-           // cantTweetEspecifico(valuesUsers,"Abu Dhabi GP main grandstand");
+            // cantTweetEspecifico(valuesUsers,"Abu Dhabi GP main grandstand");
 
 
 
             valuesHashtags = hashtagsBST.inOrder();
-          //  imprimirCantHashDistintos(valuesHashtags,"2010-11-10");
+            //  imprimirCantHashDistintos(valuesHashtags,"2010-11-10");
 
-           // hashMasUsadoParaUnDia(valuesHashtags,"2022-07-04");
+            // hashMasUsadoParaUnDia(valuesHashtags,"2022-07-04");
 
             Linked_list<user> top15 = heapUsers.toList();
-           // user[] top15 = Top15usuariosConMasTweets(valuesUsers);
-   //         System.out.println("Usuario con mas tweets1: " + top15.get(0).getName());
-  //          System.out.println("Usuario con mas tweets2: " + top15.get(1).getName());
-   //         System.out.println("Usuario con mas tweets3: " + top15.get(2).getName());
+            // user[] top15 = Top15usuariosConMasTweets(valuesUsers);
+            //         System.out.println("Usuario con mas tweets1: " + top15.get(0).getName());
+            //          System.out.println("Usuario con mas tweets2: " + top15.get(1).getName());
+            //         System.out.println("Usuario con mas tweets3: " + top15.get(2).getName());
 
-  //          user[] top7 = Top7usuariosConMasFavs(valuesUsers);
-    //        System.out.println("Usuario con mas favs1: " + top7[0].getName());
-    //        System.out.println("Usuario con mas favs2: " + top7[1].getName());
-     //       System.out.println("Usuario con mas favs3: " + top7[2].getName());
+            //          user[] top7 = Top7usuariosConMasFavs(valuesUsers);
+            //        System.out.println("Usuario con mas favs1: " + top7[0].getName());
+            //        System.out.println("Usuario con mas favs2: " + top7[1].getName());
+            //       System.out.println("Usuario con mas favs3: " + top7[2].getName());
 
 
         } catch (IOException e) {
